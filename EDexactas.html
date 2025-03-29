@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solucionador de Ecuaciones Diferenciales Exactas</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    label, input, button {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+    button {
+        padding: 10px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    .steps {
+        margin-top: 20px;
+    }
+    .step {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #e9ecef;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Ecuaciones Diferenciales Exactas</h1>
+    <label for="equation">Introduce la ecuación diferencial:</label>
+    <input type="text" id="equation" placeholder="Ejemplo: (2xy + 3)dx + (x^2 + y^2)dy = 0">
+    <button onclick="solveEquation()">Resolver</button>
+    <div class="steps" id="steps"></div>
+</div>
+
+<script>
+function solveEquation() {
+    const equation = document.getElementById('equation').value;
+    const stepsDiv = document.getElementById('steps');
+    stepsDiv.innerHTML = '';
+
+    if (equation === '') {
+        alert('Por favor ingresa una ecuación diferencial.');
+        return;
+    }
+
+    const steps = [
+        '1. Identificar las funciones M(x, y) y N(x, y).',
+        '2. Verificar que la ecuación sea exacta comprobando que (∂M/∂y) = (∂N/∂x).',
+        '3. Si es exacta, integrar M respecto a x, dejando una función h(y) como constante.',
+        '4. Derivar la expresión obtenida con respecto a y y igualar a N para encontrar h\'(y).',
+        '5. Integrar h\'(y) respecto a y para encontrar h(y).',
+        '6. Sustituir h(y) en la expresión potencial F(x, y) y establecer la solución F(x, y) = C.'
+    ];
+
+    steps.forEach(step => {
+        const stepElement = document.createElement('div');
+        stepElement.classList.add('step');
+        stepElement.textContent = step;
+        stepsDiv.appendChild(stepElement);
+    });
+}
+</script>
+</body>
+</html>
